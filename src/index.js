@@ -1,17 +1,30 @@
+import { ContactSupportOutlined } from '@material-ui/icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+//import { compose } from "redux";
+import { createStore } from "redux";
+import reducer from './reducers';
+import App from './routes/App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+//defincion de estado inicial
+const initialState = {
+  sectionActive : "dashboard",
+  activePeriod : null,
+  accountTypeId : null,
+};
+
+//manejador del componse aqui 
+
+//store
+const store = createStore(
+  reducer,
+  initialState,
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
