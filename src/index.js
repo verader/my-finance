@@ -1,10 +1,11 @@
-import { ContactSupportOutlined } from '@material-ui/icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 //import { compose } from "redux";
 import { createStore } from "redux";
 import reducer from './reducers';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import App from './routes/App';
 
 //defincion de estado inicial

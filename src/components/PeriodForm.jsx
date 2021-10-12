@@ -1,7 +1,6 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useRef } from "react";
 import useSaveData from "../custom-hooks/useSaveData";
 import { useForm } from "react-hook-form";
-import { useRef } from "react/cjs/react.development";
 import { useSelector, useDispatch } from "react-redux";
 import { setPeriod } from "../actions";
 import { Typography, Grid, Button } from "@material-ui/core";
