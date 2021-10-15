@@ -1,71 +1,52 @@
-# Getting Started with Create React App
+# Proyecto My-Finance para manejo de finanzas personales
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-commentario
+Aplicación que permite registrar un presupuesto para un mes determinado (período) y registrar las entradas y salidas de dinero en dicho período.
+Utiliza una base de datos no relacional alojada en firebase mediante el consumo de API REST
 
-## Available Scripts
+## Descripción del proyecto
 
-In the project directory, you can run:
+### Períodos
 
-### `npm start`
+Permite definir un período mensual en el cual se administrará un presupuesto.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Un período debe indicar un mes y año, un nombre y el presupuesto del período divido en 2 cuentas: gastos fijos y gastos variables.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+El período en el cuál se registrarán las entradas y salidas de dinero será el período "Activo".
 
-### `npm test`
+Solo puede haber un período "activo" a la vez.  Si se activa un período, se desactivará el período activo anterior.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Dashboard
 
-### `npm run build`
+Muestra el resumen para cada una de las cuentas (gastos fijos y gastos variables) del período activo cuyo presupuesto se desea administrar.  
+Por cada cuenta se muestra el saldo, las salidas de dinero (cargos), las entradas de dinero (abonos) y el presupuesto original para dicha cuenta definido en "Períodos".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Por cada cuenta es posible ingresar "Movimientos" que registrarán una entrada o salida de dinero. Al ingresar un nuevo movimento se deberá indicar
+su tipo (cargo o abono) la fecha, un nombre y el monto.  Al ingresar un movimiento se actualizará el saldo para la cuenta correspondiente (los cargos serán restados del saldo y los abonos serán sumados a este).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Es posible modificar o eliminar un movimiento.  Con esto se actualizará el saldo para la cuenta correspondiente.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Arquitectura del proyecto
 
-### `npm run eject`
+### /actions/
+Contiene la definición de las acciones a ejecutar por Redux
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### /styles/
+Contiene estilos y recursos gráficos
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### /components/
+Contiene todos los componentes funcionales de la app.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### /constants/
+Contiene la definición de constantes de conexiones y funciones comunes.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### /containers/
+Contiene los componentes que son utilizados como contenedores de los módulos de la app
 
-## Learn More
+### /custom-hooks/
+Contiene la definición todos los custom hooks utilizados para obtener y enviar datos desde y hacia la api
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### /reducers/
+Contiene la definición de los reducers de Redux
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### /routes/
+Contiene el componente principal App y la definició de rutas.
